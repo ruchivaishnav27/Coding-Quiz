@@ -13,7 +13,8 @@ function buildQuiz() {
                 );
             }
             output.push(
-                `<div class="question"> ${currentQuestion.question} </div>
+                `<div class="slide">
+                <div class="question"> ${currentQuestion.question} </div>
                 <div class="answers"> ${answers.join('')} </div>`
             );
         }
@@ -21,10 +22,23 @@ function buildQuiz() {
     quizContainer.innerHTML = output.join('');
 };
 
-const previousButton = document.getElementById("previous");
-const nextButton = document.getElementById("next");
-const slides = document.querySelectorAll(".slide");
-let currentSlide = 0;
+function showResults(){
+    const answerContainers = quizContainer.querySelectorAll('.answers');
+    let numCorrect = 0;
+    myQuestions.forEach( (currentQuestion, questionNumber) => {
+        const answerContainer = answerContainers[questionNumber];
+        const selector = `input[name=question${questionNumber}]:checked`;
+        const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+        if(userAnswer === currentQuestion.correctAnswer){
+            numCorrect++;
+            answerContainers[questionNumber].style.color = 'lightgreen';
+        }
+        else {
+            answerContainers[questionNumber].style.color = 'red';
+        }
+    });
+    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+};
 
 function showSlide(n) {
     slides[currentSlide].classList.remove('active-slide');
@@ -44,33 +58,15 @@ function showSlide(n) {
         nextButton.style.display = 'inline-block';
         submitButton.style.display = 'none';
     }
-}
+};
 
-function showResults(){
-    const answerContainers = quizContainer.querySelectorAll('.answers');
-    let numCorrect = 0;
-    myQuestions.forEach( (currentQuestion, questionNumber) => {
-        const answerContainer = answerContainers[questionNumber];
-        const selector = `input[name=question${questionNumber}]:checked`;
-        const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-        if(userAnswer === currentQuestion.correctAnswer){
-            numCorrect++;
-            answerContainers[questionNumber].style.color = 'lightgreen';
-        }
-        else {
-            answerContainers[questionNumber].style.color = 'red';
-        }
-    });
-    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
-}
+function showNextSlide() {
+    showSlide(currentSlide + 1);
+};
 
-buildQuiz (
-    output.push (
-        `<div class="slide">
-        <div class="question"> ${currentQuestion.question} </div>
-        <div class="answers"> ${answers.join("")} </div>
-        </div>`
-));
+function showPreviousSlide() {
+    showSlide(currentSlide - 1);
+};
 
 const quizContainer = document.getElementById('quiz');
 const resultsContainer = document.getElementById('results');
@@ -108,15 +104,14 @@ const myQuestions = [
     },
 ];  
 
+buildQuiz();
+
+const previousButton = document.getElementById("previous");
+const nextButton = document.getElementById("next");
+const slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+
 showSlide(currentSlide);
-
-function showNextSlide() {
-    showSlide(currentSlide + 1);
-};
-
-function showPreviousSlide() {
-    showSlide(currentSlide - 1);
-};
 
 submitButton.addEventListener('click', showResults);
 previousButton.addEventListener("click", showPreviousSlide);
