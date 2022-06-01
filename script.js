@@ -1,6 +1,4 @@
-
-
-function buildQuiz(){
+function buildQuiz() {
     const output = [];
     myQuestions.forEach(
         (currentQuestion, questionNumber) => {
@@ -23,6 +21,31 @@ function buildQuiz(){
     quizContainer.innerHTML = output.join('');
 };
 
+const previousButton = document.getElementById("previous");
+const nextButton = document.getElementById("next");
+const slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+
+function showSlide(n) {
+    slides[currentSlide].classList.remove('active-slide');
+    slides[n].classList.add('active-slide');
+    currentSlide = n;
+    if(currentSlide === 0){
+        previousButton.style.display = 'none';
+    }
+    else{
+        previousButton.style.display = 'inline-block';
+    }
+    if(currentSlide === slides.length-1){
+        nextButton.style.display = 'none';
+        submitButton.style.display = 'inline-block';
+    }
+    else{
+        nextButton.style.display = 'inline-block';
+        submitButton.style.display = 'none';
+    }
+}
+
 function showResults(){
     const answerContainers = quizContainer.querySelectorAll('.answers');
     let numCorrect = 0;
@@ -41,112 +64,60 @@ function showResults(){
     resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
 }
 
+buildQuiz (
+    output.push (
+        `<div class="slide">
+        <div class="question"> ${currentQuestion.question} </div>
+        <div class="answers"> ${answers.join("")} </div>
+        </div>`
+));
+
 const quizContainer = document.getElementById('quiz');
 const resultsContainer = document.getElementById('results');
 const submitButton = document.getElementById('submit');
 const myQuestions = [
     {
-        question: "what is?"
+        question: "What does HTML stand for?",
         answers: {
-            a: "d",
-            b: "d",
-            c: "d",
-            d: "d"
+            a: "Hyper Text Markup Language",
+            b: "Hypo Text Markup Language",
+            c: "Hyper Textual Markup Language",
+            d: "Hyper Text Makeup Language"
         },
-        correctAnswer: "d"
+        correctAnswer: "a"
     },
     {
-        question: ""
+        question: "What does CSS stand for?",
         answers: {
-            a: "",
-            b: "",
-            c: "",
-            d: ""
+            a: "Cascade Style Sheet",
+            b: "Color Styling Sheet",
+            c: "Cascade Styling Sheet",
+            d: "Cascade Styling Script"
         },
-        correctAnswer: ""
+        correctAnswer: "c"
     },
     {
-        question: ""
+        question: "What is the main function of CSS?",
         answers: {
-            a: "",
-            b: "",
-            c: "",
-            d: ""
+            a: "Structure",
+            b: "Styling",
+            c: "Function",
+            d: "None of the Above"
         },
-        correctAnswer: ""
-    },
-    {
-        question: ""
-        answers: {
-            a: "",
-            b: "",
-            c: "",
-            d: ""
-        },
-        correctAnswer: ""
-    },
-    {
-        question: ""
-        answers: {
-            a: "",
-            b: "",
-            c: "",
-            d: ""
-        },
-        correctAnswer: ""
-    },
-    {
-        question: ""
-        answers: {
-            a: "",
-            b: "",
-            c: "",
-            d: ""
-        },
-        correctAnswer: ""
-    },
-    {
-        question: ""
-        answers: {
-            a: "",
-            b: "",
-            c: "",
-            d: ""
-        },
-        correctAnswer: ""
-    },
-    {
-        question: ""
-        answers: {
-            a: "",
-            b: "",
-            c: "",
-            d: ""
-        },
-        correctAnswer: ""
-    },
-    {
-        question: ""
-        answers: {
-            a: "",
-            b: "",
-            c: "",
-            d: ""
-        },
-        correctAnswer: ""
-    },
-    {
-        question: ""
-        answers: {
-            a: "",
-            b: "",
-            c: "",
-            d: ""
-        },
-        correctAnswer: ""
+        correctAnswer: "b"
     },
 ];  
 
-buildQuiz();
+showSlide(currentSlide);
+
+function showNextSlide() {
+    showSlide(currentSlide + 1);
+};
+
+function showPreviousSlide() {
+    showSlide(currentSlide - 1);
+};
 
 submitButton.addEventListener('click', showResults);
+previousButton.addEventListener("click", showPreviousSlide);
+nextButton.addEventListener("click", showNextSlide);
