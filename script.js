@@ -1,3 +1,39 @@
+const quizContainer = document.getElementById('quiz');
+const resultsContainer = document.getElementById('results');
+const submitButton = document.getElementById('submit');
+let myQuestions = [
+    {
+        question: "What does HTML stand for?",
+        answers: {
+            a: "Hyper Text Markup Language",
+            b: "Hypo Text Markup Language",
+            c: "Hyper Textual Markup Language",
+            d: "Hyper Text Makeup Language"
+        },
+        correctAnswer: "a"
+    },
+    {
+        question: "What does CSS stand for?",
+        answers: {
+            a: "Cascade Style Sheet",
+            b: "Color Styling Sheet",
+            c: "Cascade Styling Sheet",
+            d: "Cascade Styling Script"
+        },
+        correctAnswer: "c"
+    },
+    {
+        question: "What is the main function of CSS?",
+        answers: {
+            a: "Structure",
+            b: "Styling",
+            c: "Function",
+            d: "None of the Above"
+        },
+        correctAnswer: "b"
+    }
+];  
+
 function buildQuiz() {
     const output = [];
     myQuestions.forEach(
@@ -67,42 +103,6 @@ function showNextSlide() {
 function showPreviousSlide() {
     showSlide(currentSlide - 1);
 };
-
-const quizContainer = document.getElementById('quiz');
-const resultsContainer = document.getElementById('results');
-const submitButton = document.getElementById('submit');
-const myQuestions = [
-    {
-        question: "What does HTML stand for?",
-        answers: {
-            a: "Hyper Text Markup Language",
-            b: "Hypo Text Markup Language",
-            c: "Hyper Textual Markup Language",
-            d: "Hyper Text Makeup Language"
-        },
-        correctAnswer: "a"
-    },
-    {
-        question: "What does CSS stand for?",
-        answers: {
-            a: "Cascade Style Sheet",
-            b: "Color Styling Sheet",
-            c: "Cascade Styling Sheet",
-            d: "Cascade Styling Script"
-        },
-        correctAnswer: "c"
-    },
-    {
-        question: "What is the main function of CSS?",
-        answers: {
-            a: "Structure",
-            b: "Styling",
-            c: "Function",
-            d: "None of the Above"
-        },
-        correctAnswer: "b"
-    },
-];  
 
 buildQuiz();
 
