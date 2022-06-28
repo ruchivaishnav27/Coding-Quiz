@@ -1,4 +1,4 @@
-# Coding-Quiz
+# Got It, Get It, Code It!
 
 ## Description
 
