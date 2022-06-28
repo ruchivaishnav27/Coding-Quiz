@@ -1,4 +1,23 @@
 # Coding-Quiz
+
+## Description
+
+This website contains a quiz on coding and will test one's knowledge of initial coding concepts.  This website was made using HTML, CSS, and JavaScript. Many challenges were faced regarding the JavaScript, especially with the actual quiz portion.  In the future, I would like to make this website better by adding a high scores element as well as a timer.
+
+## Installation
+
+To view this website, please click on the following live link: 
+
+## Usage
+
+One can use this website to test their knowledge of initial coding concepts.
+
+## Credits
+
+Ruchi Vaishnav
+
+## License
+
 MIT License
 
 Copyright (c) 2022 Ruchi Vaishnav
