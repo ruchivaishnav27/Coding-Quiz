@@ -6,7 +6,7 @@ This website contains a quiz on coding and will test one's knowledge of initial 
 
 ## Installation
 
-To view this website, please click on the following link: 
+To view this website, please click on the following link: https://ruchivaishnav27.github.io/Coding-Quiz/
 
 ## Usage
 
