@@ -1,0 +1,70 @@
+body {
+    font-size: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:darkviolet;
+    font-weight: 200;
+    text-align: center;
+    background-color: darkblue;
+}
+
+h1 {
+    font-weight: 400;
+    margin: 20px;
+    padding: 5px;
+    font-size: 15px;
+    background-color: deeppink;
+    color: darkcyan;
+}
+
+.question {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.answers {
+    margin-bottom: 5px;
+    text-align: left;
+    display: inline-block;
+}
+
+.answers label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+button {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 25px;
+    background-color: darkblue;
+    color: darkcyan;
+    border: 3px;
+    border-radius: 0px;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+button:hover {
+    background-color: darkmagenta;
+}
+
+.slide {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.active-slide {
+    opacity: 1;
+    z-index: 2;
+}
+
+.quiz-container {
+    position: relative;
+    height: 200px;
+    margin-top: 40px;
+}
